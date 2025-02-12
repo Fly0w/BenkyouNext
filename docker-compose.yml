@@ -1,0 +1,16 @@
+services:
+  db: # Nom du service
+    image: postgres:17.0 # Utilise l'image officielle PostgreSQL (version 17.0)
+    hostname: localhost # Définit le nom d'hôte du conteneur
+    ports:
+      - "5432:5432" # Mappe le port 5432 du conteneur sur le port 5432 de la machine hôte
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD} # Mot de passe PostgreSQL (défini dans .env)
+      - POSTGRES_USER=${DB_USER} # Nom d’utilisateur PostgreSQL
+      - POSTGRES_DB=${DB_NAME} # Nom de la base de données initiale
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Utilisation d'un volume persistant
+
+volumes:
+  pgdata: # Volume pour stocker les données PostgreSQL de manière persistante
+
