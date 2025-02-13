@@ -1,4 +1,6 @@
+import { SignedIn } from "@clerk/nextjs";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function ConsumerLayout({
   children,
@@ -21,6 +23,22 @@ function Navbar() {
         >
           Benkyou Next
         </Link>
+        <Suspense>
+          <SignedIn>
+            <Link
+              className="hover:bg-accent/10 flex items-center px-2"
+              href="/courses"
+            >
+              My Courses
+            </Link>
+            <Link
+              className="hover:bg-accent/10 flex items-center px-2"
+              href="/purchases"
+            >
+              Purchase History
+            </Link>
+          </SignedIn>
+        </Suspense>
       </nav>
     </header>
   );
